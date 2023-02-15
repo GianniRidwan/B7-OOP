@@ -7,6 +7,8 @@ spl_autoload_register(function($class) {
 $pika = new Pikachu('Pikachu');
 $char = new Charmeleon('Charmeleon');
 
+echo "Population: " .  Pokemon::getPopulation() . "<br><br>";
+
 echo $char->getName() . " : " .  $char->getHealth() . "<br>";
 echo $pika->getName() . " : " .  $pika->getHealth() . "<br><br>";
 
@@ -16,4 +18,6 @@ echo $char->getName() . " : " .  $char->getHealth() . "<br><br>";
 
 $char->attack($char->getAttack(1), $pika);
 echo $char->getName() . " used Flare!<br>It's super effective!<br><br>";
-echo $pika->getName() . " : " .  $pika->getHealth() . "<br>";
+echo $pika->getName() . " : " .  $pika->getHealth() . "<br><br>";
+
+echo "Population: " .  Pokemon::getPopulation() . "<br>";
