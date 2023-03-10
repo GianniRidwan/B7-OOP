@@ -53,11 +53,12 @@ class Pokemon {
         return $this->attack[$i];
     }
 
+    // Calculate the damage with resistances and weaknesses
     public function attack($attack, $target) {
         $attackingEnergy = $this->getEnergy();
         $damageReduce = $target->checkResist($attackingEnergy);
         $damageMultiplier = $target->checkWeakness($attackingEnergy);
-        $damageDone = $attack->damage;
+        $damageDone = $attack->getDamage();
         if ($damageReduce) {
             $damageDone = $damageDone - $damageReduce;
         }
@@ -67,6 +68,7 @@ class Pokemon {
         $target->damage($damageDone);
     }
       
+    // Reduce health on defending pokemon and reduce population if health is 0 or lower
     public function damage($damageDone) {
         $newHealth = $this->getHealth() - $damageDone;
         $this->setHealth($newHealth);
@@ -75,21 +77,19 @@ class Pokemon {
             }
     }
 
+    // Check if the defending pokemon has a resistance against the incoming attack
     public function checkResist($attackingEnergy) {
-        if ($this->getResistance()->name == $attackingEnergy) {
-            $damageReduce = $this->getResistance()->value;
+        if ($this->getResistance()->getName() == $attackingEnergy) {
+            $damageReduce = $this->getResistance()->getValue();
             return $damageReduce;
-        } else {
-            return;
         }
     }
 
+    // Check if the defending pokemon has a weakness against the incoming attack
     public function checkWeakness($attackingEnergy){
-        if ($this->getWeakness()->name == $attackingEnergy) {
-            $damageMultiplier = $this->getWeakness()->multiply;
+        if ($this->getWeakness()->getName() == $attackingEnergy) {
+            $damageMultiplier = $this->getWeakness()->getMultiply();
             return $damageMultiplier;
-        } else {
-            return;
         }
     }
 
