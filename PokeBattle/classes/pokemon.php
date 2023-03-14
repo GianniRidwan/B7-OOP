@@ -18,7 +18,7 @@ class Pokemon {
         $this->attack = $attack;
         $this->weakness = $weakness;
         $this->resistance = $resistance;
-        self::$totalPokemons++;
+        Pokemon::$totalPokemons++;
     }
 
     public static function getPopulation() {
